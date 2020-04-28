@@ -18,11 +18,16 @@ client.connect(err => {
     // perform actions on the collection object
    client.close();
   });
-
+app.get('/',(req,res)=>
+ {
+     res.sendFile(__dirname+'/server.html')
+ })
   
 app.get('/display',(req,res) => {
     
-    MongoClient.connect(uri,(err,db) => {
+    MongoClient.connect(uri,{ useNewUrlParser: true } ,(err,db) => {
+        const collection = client.db("atom").collection("users");
+
         if (err) throw err
 
         let dbo = db.db("atom")
