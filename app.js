@@ -9,20 +9,13 @@ app.use(bodyParser.json());
 app.set('view engine', 'ejs')
 
 const MongoClient = require('mongodb').MongoClient;
-const uri = "mongodb+srv://atom:atom@cluster0-5i0bk.mongodb.net/test?retryWrites=true&w=majority";
-const client = new MongoClient(uri, { useNewUrlParser: true });
+const url = "mongodb+srv://atom:atom@cluster0-5i0bk.mongodb.net/test?retryWrites=true&w=majority";
+const client = new MongoClient(url, { useNewUrlParser: true });
 
-client.connect(err => {
-    const collection = client.db("atom").collection("users");
-    console.log("sdf");
-    // perform actions on the collection object
-   client.close();
-  });
 
-  
 app.get('/display',(req,res) => {
     
-    MongoClient.connect(uri,(err,db) => {
+    MongoClient.connect(url,(err,db) => {
         if (err) throw err
 
         let dbo = db.db("atom")
@@ -38,15 +31,15 @@ app.get('/display',(req,res) => {
     })
 })
 
-app.listen(2000,()=>
+app.listen(2000,(req,res)=>
     {
         console.log("hh")
     })
 
-
-//     client.connect(err => {
-//    const collection = client.db("atom").collection("users");
-//    console.log("sdf");
-//    // perform actions on the collection object
-//   client.close();
-//  });
+    client.connect(err => {
+        const collection = client.db("atom").collection("users");
+        console.log("sdf");
+        // perform actions on the collection object
+       client.close();
+      });
+    
