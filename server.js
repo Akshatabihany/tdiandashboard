@@ -27,7 +27,9 @@ app.get('/display',(req,res) => {
         }
         dbll.collection('users').find(query ,(dbErr,result) => {
             if(dbErr) throw dbErr
-            res.render('server.ejs',{name : result.name})
+            res.render('server.ejs',{name : result.name
+            ,domain:res
+        })
             db.close()
         })
     })
