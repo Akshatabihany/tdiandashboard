@@ -23,7 +23,7 @@ app.get('/display',(req,res) => {
         let query = {
             name : req.body.name
         }
-        dbll.collection("users").find(query ,(dbErr,result) => {
+        dbll.collection(users).find(query ,(dbErr,result) => {
             if(dbErr) throw dbErr
             res.render('server.ejs',{name : users.name})
             db.close()
