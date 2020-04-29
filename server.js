@@ -14,9 +14,6 @@ const MongoClient = require('mongodb').MongoClient;
 const uri = "mongodb+srv://atom:atom@cluster0-5i0bk.mongodb.net/test?retryWrites=true&w=majority";
 const client = new MongoClient(uri, { useNewUrlParser: true });
 
-  app.get('/',(req,res)=>{
-      res.sendFile(__dirname+'/server.html')
-  })
 app.get('/display',(req,res) => {
 
     MongoClient.connect(uri ,(err,db) => {
