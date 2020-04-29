@@ -12,12 +12,6 @@ const MongoClient = require('mongodb').MongoClient;
 const uri = "mongodb+srv://atom:atom@cluster0-5i0bk.mongodb.net/test?retryWrites=true&w=majority";
 const client = new MongoClient(uri, { useNewUrlParser: true });
 
-client.connect(err => {
-    const collection = client.db("atom").collection("users");
-    console.log("sdf");
-    // perform actions on the collection object
-   client.close();
-  });
 app.get('/',(req,res)=>
  {
      res.sendFile(__dirname+'/server.html')
@@ -25,20 +19,15 @@ app.get('/',(req,res)=>
   
 app.get('/display',(req,res) => {
     
-    MongoClient.connect(uri,{ useNewUrlParser: true } ,(err,db) => {
-        const collection = client.db("atom").collection("users");
-
+    MongoClient.connect(uri ,(err,db) => {
         if (err) throw err
-
-        let dbo = db.db("atom")
+        let dbll = db.db("atom")
         let query = {
             name : req.body.name
         }
-        dbo.collection("users").find(query)((dbErr,result) => {
+        dbll.collection("users").find(query),{name:1,email:0,regno:0,dept:0,year:0,domain:0,password:0,verified:0,userType:0,_id:0}((dbErr,result) => {
             if(dbErr) throw dbErr
-
-            res.render('server',{'' : result})
-
+            res.render('server',{'name' : result})
             db.close()
         })
     })
@@ -48,11 +37,3 @@ app.listen(3000,()=>
     {
         console.log("hh")
     })
-
-
-//     client.connect(err => {
-//    const collection = client.db("atom").collection("users");
-//    console.log("sdf");
-//    // perform actions on the collection object
-//   client.close();
-//  });

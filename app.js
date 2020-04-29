@@ -38,7 +38,7 @@ app.get('/display',(req,res) => {
     })
 })
 
-app.listen(3000,()=>
+app.listen(2000,()=>
     {
         console.log("hh")
     })
