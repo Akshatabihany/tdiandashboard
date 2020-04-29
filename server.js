@@ -2,7 +2,6 @@ const express = require('express');
 const app = express();
 const mongodb = require('mongodb');
 const bodyParser = require('body-parser');
-const ejsLint = require('ejs-lint');
 
 const port=3000;
 app.use(bodyParser.urlencoded({extended:false}));
@@ -13,7 +12,11 @@ app.set('view engine', 'ejs')
 const MongoClient = require('mongodb').MongoClient;
 const uri = "mongodb+srv://atom:atom@cluster0-5i0bk.mongodb.net/test?retryWrites=true&w=majority";
 const client = new MongoClient(uri, { useNewUrlParser: true });
-
+app.get('/display',(req,res)=>
+{
+    res.sendFile(__dirname+'/server.html')
+}
+)
 app.get('/display',(req,res) => {
 
     MongoClient.connect(uri ,(err,db) => {
@@ -24,18 +27,12 @@ app.get('/display',(req,res) => {
         }
         dbll.collection('users').find(query ,(dbErr,result) => {
             if(dbErr) throw dbErr
-            res.render('server.ejs',{name : result.name
-            ,domain:res
+            res.render('server',{name : 'result.name'
         })
+        console.log("ll")
             db.close()
         })
     })
 })
 
-app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`))
-
-
-// app.listen(3000,()=>
-//     {
-//         console.log("hh")
-//     })
+var server=app.listen(port, () => console.log(`E`))
