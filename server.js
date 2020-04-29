@@ -2,6 +2,8 @@ const express = require('express');
 const app = express();
 const mongodb = require('mongodb');
 const bodyParser = require('body-parser');
+const ejsLint = require('ejs-lint');
+
 const port=3000;
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
@@ -23,9 +25,9 @@ app.get('/display',(req,res) => {
         let query = {
             name : req.body.name
         }
-        dbll.collection(users).find(query ,(dbErr,result) => {
+        dbll.collection('users').find(query ,(dbErr,result) => {
             if(dbErr) throw dbErr
-            res.render('server.ejs',{name : users.name})
+            res.render('server.ejs',{name : result.name})
             db.close()
         })
     })
