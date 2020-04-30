@@ -21,7 +21,7 @@ app.get('/display',(req,res)=>{
          if (err) throw err
          let dbll = db.db("atom")
          let query = {
-             name : req.body.name,
+             name : req.body.name
          }
          dbll.collection('users').findOne(query ,(dbErr,result) => {
             if(dbErr) throw dbErr
@@ -37,7 +37,8 @@ app.get('/display',(req,res)=>{
               let q={ 
                   
                 $where:  this.members[0]._id.toString() ==checkid.toString()
-                //checkid : members[0]._id
+                //checkid : members[0]._id///
+                ////
               }
             dbll.collection('tasks').findOne(q,(dberr,resultt)=>
             {
