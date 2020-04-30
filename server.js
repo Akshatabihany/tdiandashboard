@@ -36,7 +36,7 @@ app.get('/display',(req,res)=>{
               console.log(checkid)
               let q={ 
                   
-                $where:  this.members[0]._id ==checkid
+                $where:  this.members[0]._id.toString() ==checkid.toString()
                 //checkid : members[0]._id
               }
             dbll.collection('tasks').findOne(q,(dberr,resultt)=>
