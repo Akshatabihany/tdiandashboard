@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const mongodb = require('mongodb');
 
-const port=3000;
+const port=5000;
 app.use(express.urlencoded({extended:false}));
 app.use(express.json());
 
@@ -23,36 +23,63 @@ app.get('/display',(req,res)=>{
          let query = {
              name : req.body.name
          }
+         var p;
          dbll.collection('users').findOne(query ,(dbErr,result) => {
             if(dbErr) throw dbErr
-             console.log(result)
-             if(result){ 
-                res.render('server',{name : result._id})
-             } else {
-                 res.render('server',{name:'not found'})
-             }
+            else
+            p=result._id;
+            console.log(result._id)
+             console.log(p)
+       //  })
+          const t=dbll.collection('tasks').find({'members.id':p})
+          //.project({'member.name':1})
+          console.log(t)
+        //   ,(err,resultt)=>
+        //  {
+        //     if(dbErr) throw dbErr
+        //     else
+        //     console.log(resultt)
+        //  })
+        })
+             // if(result){ 
+            //     res.render('server',{name : result._id})
+            //  } else {
+            //      res.render('server',{name:'not found'})
+            //  }
 
-              let checkid=result._id
-              console.log(checkid)
-              let q={ 
+            //   let checkid=result._id
+            //   console.log(checkid)
+            //   let q={ 
                   
-                $where:  this.members[0]._id.toString() ==checkid.toString()
-                //checkid : members[0]._id///
-                ////
-              }
-            dbll.collection('tasks').findOne(q,(dberr,resultt)=>
-            {
-                if(dberr) throw dberr
-                if(resultt)
-                {
-                    console.log("found")
-                }else{
-                    console.log("fds")
-                }
-            })
-         })
+            //     $where:  this.members[0]._id.toString() ==checkid.toString()
+            //     //checkid : members[0]._id///
+            //     ////
+            //   }
+            // dbll.collection('tasks').findOne(q,(dberr,resultt)=>
+            // {
+            //     if(dberr) throw dberr
+            //     if(resultt)
+            //     {
+            //         console.log("found")
+            //     }else{
+            //         console.log("fds")
+            //     }
+            // })
+         ////})
      })
     })
+// app.post('/display',(req,res)=>
+// {
+    
+//     MongoClient.connect(uri ,(err,db) => {
+//         if (err) throw err
+//         let dbll = db.db("atom")
+//         dbll.collection('tasks').find({$where:function()
+//         {
+//             if(this.members.id=='5e947949c4725f26f47bd81d')
+//                console.log("found")
+//         }})
+// })
 
 // app.post('/display',(req,res) => {
 
@@ -74,7 +101,7 @@ app.get('/display',(req,res)=>{
 //             res.render('server',{name:'not found'})
 //         }
 //         })
-//     })
+    
 
 
 app.listen(port, () => console.log(`Server running at http://localhost:${port}`))
