@@ -10,8 +10,11 @@
         <input type="text" name="name" placeholder="Name">
         <input type="submit">
         <tr>
-           <label name="id" for=""><td> <%= name %> </td> </label>
            
+           <% tasks.forEach(function(task){ %>
+            <option value="<% tasks.name %>"><%= task.name %></option>
+     <%   })%>
+
     </form>
      
         

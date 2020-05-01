@@ -13,7 +13,7 @@ const uri = "mongodb+srv://atom:atom@cluster0-5i0bk.mongodb.net/test?retryWrites
 
 
 app.get('/display',(req,res)=>{
-    res.render('server',{name:""})
+    res.render('server',{name:"",tasks:""})
 })
  app.post('/display',(req,res) => {
 
@@ -27,13 +27,50 @@ app.get('/display',(req,res)=>{
          dbll.collection('users').findOne(query ,(dbErr,result) => {
             if(dbErr) throw dbErr
             else
-            p=result._id;
+           { p=JSON.stringify(result._id);
             console.log(result._id)
-             console.log(p)
-       //  })
-          const t=dbll.collection('tasks').find({'members.id':p})
-          //.project({'member.name':1})
-          console.log(t)
+             console.log(p)}
+            })
+
+            
+            let qury = {}
+
+            dbll.collection("tasks").find(qury).toArray((dbErr,result) => {
+                if(dbErr) throw dbErr
+                if(result)
+                res.render('server',{'tasks' : result})
+                else
+                res.render('server',{'tasks' : "xcvb"})
+                db.close()
+        })
+         })
+
+
+    //    const cursor = db.collection('inventory').find({
+    //     'size.h': { $lt: 15 }
+    //   });
+    //    dbll.collection('tasks').findOne(query ,(dbErr,resultt) => {
+    //     if(dbErr) throw dbErr
+    //     else
+    //     p=JSON.stringify(resultt._id);
+    //     console.log(result._id)
+    //      console.log(p)
+////
+ //    var allid = dbll.collection('tasks').find({}).toArray();
+  ///   console.log(allid)
+//  let q={
+//     'members.id'.valueOf():p
+//  }
+    
+//             const cursor=dbll.collection('tasks').find(q)
+//             .project({'member.name':1})
+//              console.log(cursor)
+        //   if(cursor){ 
+        //          res.render('server',{name :cursor})
+        //       } else {
+        //           res.render('server',{name:'not found'})
+        //       }
+
         //   ,(err,resultt)=>
         //  {
         //     if(dbErr) throw dbErr
@@ -66,8 +103,7 @@ app.get('/display',(req,res)=>{
             //     }
             // })
          ////})
-     })
-    })
+    
 // app.post('/display',(req,res)=>
 // {
     
