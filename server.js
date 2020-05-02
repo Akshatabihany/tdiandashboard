@@ -41,9 +41,9 @@ app.get('/display',(req,res)=>{
               if(t==p)
               {//console.log(t)
                console.log(T.title)
-               console.log(T.deadline)
-               console.log(T.descriptio)
-               console.log(docs[i].members[j].name)
+               console.log(JSON.stringify(T.deadline))
+               console.log(T.description)
+               console.log(docs[i].members[j].subtasks)
              }
             }
 
