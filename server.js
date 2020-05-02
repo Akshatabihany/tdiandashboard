@@ -43,7 +43,7 @@ app.get('/display',(req,res)=>{
                 console.log(T.description)
               // resourcess
               // for(k in T.resources)
-              // {  const res=T.resource[k]
+              // {  const rs=T.resource[k]
               //   console.log(res)
               // }
               for(k in tt)
