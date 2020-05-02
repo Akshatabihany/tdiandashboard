@@ -10,7 +10,7 @@ const uri = "mongodb+srv://atom:atom@cluster0-5i0bk.mongodb.net/test?retryWrites
 app.get('/display',(req,res)=>{
 ///  res.render('server',{name:""})
  
-    res.render('server',{name:"",title:"",deadline:"",description:"",percentage:""})
+    res.render('server',{nme:"",title:"",deadline:"",description:"",percentage:""})
 })
 
  app.post('/display',(req,res) => {
@@ -66,14 +66,14 @@ app.get('/display',(req,res)=>{
              const title=T.title
              const deadline=JSON.stringify(T.deadline)
              const description=T.description
-             const name=docs[i].members[j].name
+             const nme=docs[i].members[j].name
            }}
 
           }
           
         })
        /// dbll.close()
-                    res.render('server',{name:name,title:title,deadline:deadline,description:description,percentage:percentage})
+                    res.render('server',{nme:nme,title:title,deadline:deadline,description:description,percentage:percentage})
     })
  })
 
