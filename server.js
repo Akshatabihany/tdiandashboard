@@ -8,7 +8,7 @@ app.set('view engine', 'ejs')
 const MongoClient = mongodb.MongoClient
 const uri = "mongodb+srv://atom:atom@cluster0-5i0bk.mongodb.net/test?retryWrites=true&w=majority";
 app.get('/display',(req,res)=>{
-    res.render('server',{name:""})
+    res.render('server',{name:""},{title:""},{deadline:""},{description:""})
 })
 
  app.post('/display',(req,res) => {
@@ -24,8 +24,6 @@ app.get('/display',(req,res)=>{
             {throw dbErr}
             else
             { p=JSON.stringify(result._id);
-        //      console.log(result._id)
-            //+ console.log(p)
             }
            })
 
@@ -40,16 +38,22 @@ app.get('/display',(req,res)=>{
               const t=JSON.stringify(docs[i].members[j].id)
               if(t==p)
               {//console.log(t)
-               console.log(T.title)
-               console.log(JSON.stringify(T.deadline))
-               console.log(T.description)
-               console.log(docs[i].members[j].subtasks)
+              //  console.log(T.title)
+              //  console.log(JSON.stringify(T.deadline))
+              //  console.log(T.description)
+                console.log(docs[i].members[j].subtasks)
+               const title=T.title
+               const deadline=JSON.stringify(T.deadline)
+               const description=T.description
+               const name=docs[i].members[j].name
+               
              }
             }
 
            }
-           } )
-
+           }
+           )
+           res.render('server',{name:"name"},{title:"title"},{deadline:"deadline"},{description:"description"})
     })
  })
 
