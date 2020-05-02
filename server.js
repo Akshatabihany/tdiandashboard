@@ -8,7 +8,6 @@ app.set('view engine', 'ejs')
 const MongoClient = mongodb.MongoClient
 const uri = "mongodb+srv://atom:atom@cluster0-5i0bk.mongodb.net/test?retryWrites=true&w=majority";
 app.get('/display',(req,res)=>{
-///  res.render('server',{name:""})
  
     res.render('server',{nme:"",title:"",deadline:"",description:"",percentage:""})
 })
@@ -30,19 +29,18 @@ app.get('/display',(req,res)=>{
            })
            dbll.collection('tasks').find({}).toArray(function(err, docs){
              var i,j;
-          //  console.log(JSON.stringify(docs[0].members[0].id))
             for(i in docs){
             for(j in docs[i].members)
             {
-             // console.log(JSON.stringify(docs[i].members[j].id))
+              console.log(JSON.stringify(docs[i].members[j].id))
               const T=docs[i]
               const t=JSON.stringify(docs[i].members[j].id)
               const tt=docs[i].members[j].subtasks
               if(t==p)
-              {//console.log(t)
-              //  console.log(T.title)
-              //  console.log(JSON.stringify(T.deadline))
-              //  console.log(T.description)
+              {console.log(t)
+                console.log(T.title)
+                console.log(JSON.stringify(T.deadline))
+                console.log(T.description)
               // resourcess
               // for(k in T.resources)
               // {  const res=T.resource[k]
@@ -50,8 +48,8 @@ app.get('/display',(req,res)=>{
               // }
               for(k in tt)
               {   var taskdone,nooftasks;
-              ////  console.log(tt[k].title)
-                ////console.log(JSON.stringify(tt[k].status))
+                console.log(tt[k].title)
+                console.log(JSON.stringify(tt[k].status))
                 const status=JSON.stringify(tt[k].status)
                 if(status)
                 {
