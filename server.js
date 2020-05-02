@@ -53,7 +53,7 @@ app.get('/display',(req,res)=>{
            }
            }
            )
-           res.render('server',{name:"name"},{title:"title"},{deadline:"deadline"},{description:"description"})
+           res.render('server',{name:name},{title:title},{deadline:deadline},{description:description})
     })
  })
 
