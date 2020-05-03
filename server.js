@@ -9,7 +9,7 @@ const MongoClient = mongodb.MongoClient
 const uri = "mongodb+srv://atom:atom@cluster0-5i0bk.mongodb.net/test?retryWrites=true&w=majority";
 app.get('/display',(req,res)=>{
  
-    res.render('server',{nme:"",title:"",deadline:"",description:"",percentage:""})
+    res.render('server',{nme:"",title:"",deadline:"",description:"",percentage:"",arrayoftitle:""})
 })
 
  app.post('/display',(req,res) => {
@@ -48,7 +48,9 @@ app.get('/display',(req,res)=>{
               // }
               for(k in tt)
               {   var taskdone,nooftasks;
-                console.log(tt[k].title)
+               const arrayoftitle=[]  
+               arrayoftitle[k]=tt[k].title
+               console.log(tt[k].title)
                 console.log(JSON.stringify(tt[k].status))
                 const status=JSON.stringify(tt[k].status)
                 if(status)
@@ -65,13 +67,16 @@ app.get('/display',(req,res)=>{
              const deadline=JSON.stringify(T.deadline)
              const description=T.description
              const nme=docs[i].members[j].name
-           }}
+             res.render('server',{nme:nme,title:title,deadline:deadline,description:description,percentage:percentage,arrayoftitle:arrayoftitle})
 
+           }}
+       ///    res.render('server',{nme:nme,title:title,deadline:deadline,description:description,percentage:percentage})
+           
           }
-          
+        //// res.render('server',{nme:nme,title:title,deadline:deadline,description:description,percentage:percentage})
         })
        /// dbll.close()
-                    res.render('server',{nme:nme,title:title,deadline:deadline,description:description,percentage:percentage})
+                   //// res.render('server',{nme:nme,title:title,deadline:deadline,description:description,percentage:percentage})
     })
  })
 

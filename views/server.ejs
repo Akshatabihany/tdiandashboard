@@ -7,26 +7,23 @@
     <title>Document</title>
 </head>
 <body>
-    
     <form action="/display" method="POST">
         <input type="text" name="name" placeholder="Name">
         <input type="submit">
         <tr>
-           
-
             <label name="name" for=""><td> <%= nme %> </td> </label> 
             <label name="name" for=""><td> <%= title %> </td> </label> 
             <label name="name" for=""><td> <%= deadline %> </td> </label> 
             <label name="name" for=""><td> <%= description %> </td> </label> 
             <label name="name" for=""><td> <%= percentage %> </td> </label> 
-
-           
+            <ul>
+                <% for (var i in <%arrayoftitle %>){ %>
+                <li> <%=arrayoftitle[i] %></li>
+                <%};%>
+           </ul>
 <div class="w3-border">
-    <div class="w3-grey" style="height:24px;width:<%percentage%>"></div>
+    <div class="w3-grey" style="height:24px;width:55px"></div>
   </div>
-
-    </form>
-     
-        
+    </form>   
 </body>
 </html>
