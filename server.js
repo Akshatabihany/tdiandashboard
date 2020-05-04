@@ -9,7 +9,7 @@ const MongoClient = mongodb.MongoClient
 const uri = "mongodb+srv://atom:atom@cluster0-5i0bk.mongodb.net/test?retryWrites=true&w=majority";
 app.get('/display',(req,res)=>{
  
-    res.render('server',{nme:"",title:"",deadline:"",description:"",percentage:"",arrayoftitle:""})
+  res.render('server',{Nme:"",Title:"",Deadline:"",Description:"",Percentage:"",Arrayoftitle:""})
 })
 
  app.post('/display',(req,res) => {
@@ -29,13 +29,14 @@ app.get('/display',(req,res)=>{
            })
            dbll.collection('tasks').find({}).toArray(function(err, docs){
              var i,j;
+             var docss=docs
             for(i in docs){
             for(j in docs[i].members)
             {
               console.log(JSON.stringify(docs[i].members[j].id))
-              const T=docs[i]
-              const t=JSON.stringify(docs[i].members[j].id)
-              const tt=docs[i].members[j].subtasks
+              var T=docs[i]
+              var t=JSON.stringify(docs[i].members[j].id)
+              var tt=docs[i].members[j].subtasks
               if(t==p)
               {console.log(t)
                 console.log(T.title)
@@ -48,8 +49,9 @@ app.get('/display',(req,res)=>{
               // }
               for(k in tt)
               {   var taskdone,nooftasks;
-               const arrayoftitle=[]  
-               arrayoftitle[k]=tt[k].title
+               var arrayoftitle=[]  
+              // arrayoftitle.push(tt[k].title)
+             arrayoftitle[k]=tt[k].title
                console.log(tt[k].title)
                 console.log(JSON.stringify(tt[k].status))
                 const status=JSON.stringify(tt[k].status)
@@ -61,22 +63,31 @@ app.get('/display',(req,res)=>{
               nooftasks=tt.length
               console.log(taskdone)
              console.log(nooftasks)
-             const percentage=(taskdone/nooftasks)*100
+             var percentage=(taskdone/nooftasks)*100
              console.log(percentage)
-             const title=T.title
-             const deadline=JSON.stringify(T.deadline)
-             const description=T.description
-             const nme=docs[i].members[j].name
-             res.render('server',{nme:nme,title:title,deadline:deadline,description:description,percentage:percentage,arrayoftitle:arrayoftitle})
+             var title=T.title
+             var deadline=JSON.stringify(T.deadline)
+              var description=T.description
+             var nme=docs[i].members[j].name
+
+
+             var Percentage=[]
+             var Title=[]
+             var Deadline=[]
+             var Description=[]
+             var Nme=[]
+             Percentage[i]=percentage
+             Title[i]=title
+             Deadline[i]=deadline
+             Description[i]=description
+             Nme[i]=nme
+
 
            }}
-       ///    res.render('server',{nme:nme,title:title,deadline:deadline,description:description,percentage:percentage})
+           res.render('server',{Nme:Nme,Title:Title,Deadline:Deadline,Description:Description,Percentage:Percentage})
            
           }
-        //// res.render('server',{nme:nme,title:title,deadline:deadline,description:description,percentage:percentage})
         })
-       /// dbll.close()
-                   //// res.render('server',{nme:nme,title:title,deadline:deadline,description:description,percentage:percentage})
     })
  })
 

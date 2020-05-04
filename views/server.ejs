@@ -11,16 +11,17 @@
         <input type="text" name="name" placeholder="Name">
         <input type="submit">
         <tr>
-            <label name="name" for=""><td> <%= nme %> </td> </label> 
-            <label name="name" for=""><td> <%= title %> </td> </label> 
-            <label name="name" for=""><td> <%= deadline %> </td> </label> 
-            <label name="name" for=""><td> <%= description %> </td> </label> 
-            <label name="name" for=""><td> <%= percentage %> </td> </label> 
+            <% for(var index = 0 ; index <3 ; index++) { %>
+            <label name="name" for=""><td> <%= Nme[index] %> </td> </label> 
+            <label name="name" for=""><td> <%= Title[index] %> </td> </label> 
+            <label name="name" for=""><td> <%= Deadline[index] %> </td> </label> 
+            <label name="name" for=""><td> <%= Description[index] %> </td> </label> 
+            <label name="name" for=""><td> <%= Percentage[index]%> </td> </label> 
             <ul>
 
-                <% for (var i in arrayoftitle ){ %>
-                <li> <%=arrayoftitle[i] %></li>
-                <%};%>
+             
+             <% } %>
+
            </ul>
 <div class="w3-border">
     <div class="w3-grey" style="height:24px;width:55px"></div>

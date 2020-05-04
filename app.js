@@ -1,14 +1,15 @@
 const express = require('express');
 const app = express();
 const mongodb = require('mongodb');
-const port=3000;
+const port=2000;
 app.use(express.urlencoded({extended:false}));
 app.use(express.json());
 app.set('view engine', 'ejs')
 const MongoClient = mongodb.MongoClient
 const uri = "mongodb+srv://atom:atom@cluster0-5i0bk.mongodb.net/test?retryWrites=true&w=majority";
 app.get('/display',(req,res)=>{
-    res.render('server',{name:""})
+ 
+    res.render('server',{Nme:"",Title:"",Deadline:"",Description:"",Percentage:"",Arrayoftitle:""})
 })
 
  app.post('/display',(req,res) => {
@@ -18,7 +19,7 @@ app.get('/display',(req,res)=>{
          let query = {
              name : req.body.name
          }
-         var p;
+
          dbll.collection('users').findOne(query ,(dbErr,result) => {
             if(dbErr) 
             {throw dbErr}
@@ -28,41 +29,67 @@ app.get('/display',(req,res)=>{
            })
            dbll.collection('tasks').find({}).toArray(function(err, docs){
              var i,j;
-            for(i in docs){
-            for(j in docs[i].members)
+           //  var docss=docs
+             console.log(docs.members)
+            for(i=0;i<docs.length;i++){
+            for(j=0;j< docs[i].members.length;i++)
             {
-              const T=docs[i]
-              const t=JSON.stringify(docs[i].members[j].id)
-              const tt=docs[i].members[j].subtasks
+              console.log(JSON.stringify(docs[i].members[j].id))
+              var T=docs[i]
+              var t=JSON.stringify(docs[i].members[j].id)
+              var tt=docs[i].members[j].subtasks
               if(t==p)
-              {
-               for(k in T.resources)
-               {  const res=JSON.stringify(T.resource[k])
-                 console.log(res)
-               }
-              for(k in tt)
-                {   var taskdone,nooftasks;
-                ////  console.log(tt[k].title)
-                  ////console.log(JSON.stringify(tt[k].status))
-                  const status=JSON.stringify(tt[k].status)
-                  if(status)
-                  {
-                      taskdone=taskdone+1
-                  }
+              {console.log(t)
+                console.log(T.title)
+                console.log(JSON.stringify(T.deadline))
+                console.log(T.description)
+              // resourcess
+              // for(k in T.resources)
+              // {  const rs=T.resource[k]
+              //   console.log(res)
+              // }
+              for(k =0;k<tt.length;k++)
+              {   var taskdone,nooftasks;
+               var arrayoftitle=[]  
+              // arrayoftitle.push(tt[k].title)
+             arrayoftitle[k]=tt[k].title
+               console.log(tt[k].title)
+                console.log(JSON.stringify(tt[k].status))
+                const status=JSON.stringify(tt[k].status)
+                if(status)
+                {
+                    taskdone=taskdone+1
                 }
-                nooftasks=tt.length
-               // console.log(taskdone)
-               //console.log(nooftasks)
-               const percentage=(taskdone/nooftasks)*100
-               ///console.log(percentage)
-               const title=T.title
-               const deadline=JSON.stringify(T.deadline)
-               const description=T.description
-               const name=docs[i].members[j].name
-             }}
-            }
-           })
+              }
+              nooftasks=tt.length
+              console.log(taskdone)
+             console.log(nooftasks)
+             var percentage=(taskdone/nooftasks)*100
+             console.log(percentage)
+             var title=T.title
+             var deadline=JSON.stringify(T.deadline)
+              var description=T.description
+             var nme=docs[i].members[j].name
+          
+           var Percentage=[]
+           var Title=[]
+           var Deadline=[]
+           var Description=[]
+           var Nme=[]
+           Percentage[i]=percentage
+           Title[i]=title
+           Deadline[i]=deadline
+           Description[i]=description
+           Nme[i]=nme
+          }}
            
+          res.render('server',{Nme:Nme,Title:Title,Deadline:Deadline,Description:Description,Percentage:Percentage})
+           
+          }
+        //// res.render('server',{nme:nme,title:title,deadline:deadline,description:description,percentage:percentage})
+        })
+       /// dbll.close()
+                   //// res.render('server',{nme:nme,title:title,deadline:deadline,description:description,percentage:percentage})
     })
  })
 
