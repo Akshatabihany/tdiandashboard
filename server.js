@@ -8,8 +8,8 @@ app.set('view engine', 'ejs')
 const MongoClient = mongodb.MongoClient
 const uri = "mongodb+srv://atom:atom@cluster0-5i0bk.mongodb.net/test?retryWrites=true&w=majority";
 app.get('/display',(req,res)=>{
- 
-  res.render('server',{Nme:"",Title:"",Deadline:"",Description:"",Percentage:"",Arrayoftitle:""})
+  res.sendFile(__dirname+'/server.html')
+ // res.render('server',{ar:""})
 })
 
  app.post('/display',(req,res) => {
@@ -20,11 +20,14 @@ app.get('/display',(req,res)=>{
              name : req.body.name
          }
          var p;
+         console.log(req.query.name);
          dbll.collection('users').findOne(query ,(dbErr,result) => {
             if(dbErr) 
             {throw dbErr}
             else
-            { p=JSON.stringify(result._id);
+            {
+              console.log("result from db",result)
+               p=JSON.stringify(result._id);
             }
            })
            dbll.collection('tasks').find({}).toArray(function(err, docs){
@@ -81,10 +84,12 @@ app.get('/display',(req,res)=>{
              Deadline[i]=deadline
              Description[i]=description
              Nme[i]=nme
-
-
+ var arr=[]
+ arr.push({"Nme":Nme[i],"Title":Title[i],"Deadline": Deadline[i],"Description":Description[i]})
+console.log(arr)
            }}
-           res.render('server',{Nme:Nme,Title:Title,Deadline:Deadline,Description:Description,Percentage:Percentage})
+          // res.render('server',{ar:arr})
+   //  res.render('server',{Nme:Nme,Title:Title,Deadline:Deadline,Description:Description,Percentage:Percentage})
            
           }
         })

@@ -7,21 +7,16 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="/display" method="POST">
+    <form action="/displaypost" method="POST">
         <input type="text" name="name" placeholder="Name">
         <input type="submit">
         <tr>
-            <% for(var index = 0 ; index <3 ; index++) { %>
-            <label name="name" for=""><td> <%= Nme[index] %> </td> </label> 
-            <label name="name" for=""><td> <%= Title[index] %> </td> </label> 
-            <label name="name" for=""><td> <%= Deadline[index] %> </td> </label> 
-            <label name="name" for=""><td> <%= Description[index] %> </td> </label> 
-            <label name="name" for=""><td> <%= Percentage[index]%> </td> </label> 
-            <ul>
-
-             
-             <% } %>
-
+            <% arr.forEach(function(ar){ %>
+                <h2><%= ar.Nme %></h2>
+                <h2><%= ar.Title %></h2>
+                <h2><%= ar.Deadline %></h2>
+                <h2><%= ar.Description %></h2>
+         <%   })%>
            </ul>
 <div class="w3-border">
     <div class="w3-grey" style="height:24px;width:55px"></div>
@@ -29,3 +24,5 @@
     </form>   
 </body>
 </html>
+
+
