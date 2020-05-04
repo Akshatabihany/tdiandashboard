@@ -20,7 +20,7 @@ app.get('/display',(req,res)=>{
              name : req.body.name
          }
          var p;
-         console.log(req.query.name);
+         console.log(req.body.name);
          dbll.collection('users').findOne(query ,(dbErr,result) => {
             if(dbErr) 
             {throw dbErr}
@@ -33,6 +33,7 @@ app.get('/display',(req,res)=>{
            dbll.collection('tasks').find({}).toArray(function(err, docs){
              var i,j;
              var docss=docs
+             var arr=[];
             for(i in docs){
             for(j in docs[i].members)
             {
@@ -42,9 +43,12 @@ app.get('/display',(req,res)=>{
               var tt=docs[i].members[j].subtasks
               if(t==p)
               {console.log(t)
-                console.log(T.title)
+                console.log("deee",T.title)
                 console.log(JSON.stringify(T.deadline))
                 console.log(T.description)
+      
+                arr.push({"Title":T.title,"Deadline":T.deadline,"Description":T.description})
+                
               // resourcess
               // for(k in T.resources)
               // {  const rs=T.resource[k]
@@ -84,11 +88,11 @@ app.get('/display',(req,res)=>{
              Deadline[i]=deadline
              Description[i]=description
              Nme[i]=nme
- var arr=[]
- arr.push({"Nme":Nme[i],"Title":Title[i],"Deadline": Deadline[i],"Description":Description[i]})
-console.log(arr)
+
+
+console.log("my array",arr)
            }}
-          // res.render('server',{ar:arr})
+           res.render('server',{data:arr})
    //  res.render('server',{Nme:Nme,Title:Title,Deadline:Deadline,Description:Description,Percentage:Percentage})
            
           }

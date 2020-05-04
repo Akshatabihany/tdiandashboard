@@ -7,17 +7,15 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="/displaypost" method="POST">
+    <form action="/display" method="POST">
         <input type="text" name="name" placeholder="Name">
         <input type="submit">
-        <tr>
-            <% arr.forEach(function(ar){ %>
-                <h2><%= ar.Nme %></h2>
-                <h2><%= ar.Title %></h2>
-                <h2><%= ar.Deadline %></h2>
-                <h2><%= ar.Description %></h2>
-         <%   })%>
-           </ul>
+       <ul>       <% for(var i=0;i<data.length;i++) {%>
+         <li>
+            <p><%= data[i].Title %><%= data[i].Deadline %><%= data[i].Description %></p>
+     </li>
+    <%   })%>
+       </ul>
 <div class="w3-border">
     <div class="w3-grey" style="height:24px;width:55px"></div>
   </div>
