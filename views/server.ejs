@@ -7,19 +7,35 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="/display" method="POST">
+    <form action="/displaypost" method="POST">
         <input type="text" name="name" placeholder="Name">
         <input type="submit">
-       <ul>       <% for(var i=0;i<data.length;i++) {%>
-         <li>
-            <p><%= data[i].Title %><%= data[i].Deadline %><%= data[i].Description %></p>
-     </li>
-    <%   })%>
-       </ul>
+      
 <div class="w3-border">
     <div class="w3-grey" style="height:24px;width:55px"></div>
   </div>
     </form>   
+    <ul>       <% for(var i=0; i<data.length; i++) {%>
+
+      <li>
+         <p><%= data[i].Title %><%= data[i].Deadline %><%= data[i].Description %><%= data[i].subtaskname %><%= data[i].subtaskstatus %></p>
+
+         <ul>
+            <% for(var j=0; j<data[i].arrayy.length; j++) {%>
+              <li>
+           <p><%=data[i].arrayy[j].status%><%=data[i].arrayy[j].subname%></p>
+           </li>
+          <%}%>
+        </ul>
+
+  </li>
+ <%}%>
+    </ul>
+
+    <div class="w3-border">
+      <div class="w3-grey" style="height:24px;width:0px"></div>
+    </div>
+
 </body>
 </html>
 

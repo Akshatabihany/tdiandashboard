@@ -8,8 +8,8 @@ app.set('view engine', 'ejs')
 const MongoClient = mongodb.MongoClient
 const uri = "mongodb+srv://atom:atom@cluster0-5i0bk.mongodb.net/test?retryWrites=true&w=majority";
 app.get('/display',(req,res)=>{
- 
-    res.render('server',{Nme:"",Title:"",Deadline:"",Description:"",Percentage:"",Arrayoftitle:""})
+  res.sendFile(__dirname+'/server.html')
+ // res.render('server',{ar:""})
 })
 
  app.post('/display',(req,res) => {
@@ -19,20 +19,23 @@ app.get('/display',(req,res)=>{
          let query = {
              name : req.body.name
          }
-
+         var p;
+         console.log(req.body.name);
          dbll.collection('users').findOne(query ,(dbErr,result) => {
             if(dbErr) 
             {throw dbErr}
             else
-            { p=JSON.stringify(result._id);
+            {
+              console.log("result from db",result)
+               p=JSON.stringify(result._id);
             }
            })
            dbll.collection('tasks').find({}).toArray(function(err, docs){
              var i,j;
-           //  var docss=docs
-             console.log(docs.members)
-            for(i=0;i<docs.length;i++){
-            for(j=0;j< docs[i].members.length;i++)
+             var docss=docs
+             var arr=[];
+            for(i in docs){
+            for(j in docs[i].members)
             {
               console.log(JSON.stringify(docs[i].members[j].id))
               var T=docs[i]
@@ -40,15 +43,18 @@ app.get('/display',(req,res)=>{
               var tt=docs[i].members[j].subtasks
               if(t==p)
               {console.log(t)
-                console.log(T.title)
+                console.log("deee",T.title)
                 console.log(JSON.stringify(T.deadline))
                 console.log(T.description)
+      
+                arr.push({"Title":T.title,"Deadline":T.deadline,"Description":T.description})
+                
               // resourcess
               // for(k in T.resources)
               // {  const rs=T.resource[k]
               //   console.log(res)
               // }
-              for(k =0;k<tt.length;k++)
+              for(k in tt)
               {   var taskdone,nooftasks;
                var arrayoftitle=[]  
               // arrayoftitle.push(tt[k].title)
@@ -70,26 +76,27 @@ app.get('/display',(req,res)=>{
              var deadline=JSON.stringify(T.deadline)
               var description=T.description
              var nme=docs[i].members[j].name
-          
-           var Percentage=[]
-           var Title=[]
-           var Deadline=[]
-           var Description=[]
-           var Nme=[]
-           Percentage[i]=percentage
-           Title[i]=title
-           Deadline[i]=deadline
-           Description[i]=description
-           Nme[i]=nme
-          }}
-           
-          res.render('server',{Nme:Nme,Title:Title,Deadline:Deadline,Description:Description,Percentage:Percentage})
+
+
+             var Percentage=[]
+             var Title=[]
+             var Deadline=[]
+             var Description=[]
+             var Nme=[]
+             Percentage[i]=percentage
+             Title[i]=title
+             Deadline[i]=deadline
+             Description[i]=description
+             Nme[i]=nme
+
+
+console.log("my array",arr)
+           }}
+           res.render('server',{data:arr})
+   //  res.render('server',{Nme:Nme,Title:Title,Deadline:Deadline,Description:Description,Percentage:Percentage})
            
           }
-        //// res.render('server',{nme:nme,title:title,deadline:deadline,description:description,percentage:percentage})
         })
-       /// dbll.close()
-                   //// res.render('server',{nme:nme,title:title,deadline:deadline,description:description,percentage:percentage})
     })
  })
 

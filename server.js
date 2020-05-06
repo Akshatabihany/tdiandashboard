@@ -12,7 +12,7 @@ app.get('/display',(req,res)=>{
  // res.render('server',{ar:""})
 })
 
- app.post('/display',(req,res) => {
+ app.post('/displaypost',(req,res) => {
      MongoClient.connect(uri ,(err,db) => {
          if (err) throw err
          let dbll = db.db("atom")
@@ -26,80 +26,49 @@ app.get('/display',(req,res)=>{
             {throw dbErr}
             else
             {
-              console.log("result from db",result)
-               p=JSON.stringify(result._id);
-            }
-           })
+              console.log("result from db",result._id)
+               p=result._id;
            dbll.collection('tasks').find({}).toArray(function(err, docs){
-             var i,j;
              var docss=docs
              var arr=[];
-            for(i in docs){
-            for(j in docs[i].members)
-            {
-              console.log(JSON.stringify(docs[i].members[j].id))
-              var T=docs[i]
-              var t=JSON.stringify(docs[i].members[j].id)
-              var tt=docs[i].members[j].subtasks
-              if(t==p)
-              {console.log(t)
-                console.log("deee",T.title)
-                console.log(JSON.stringify(T.deadline))
-                console.log(T.description)
-      
-                arr.push({"Title":T.title,"Deadline":T.deadline,"Description":T.description})
-                
-              // resourcess
-              // for(k in T.resources)
-              // {  const rs=T.resource[k]
-              //   console.log(res)
-              // }
-              for(k in tt)
-              {   var taskdone,nooftasks;
-               var arrayoftitle=[]  
-              // arrayoftitle.push(tt[k].title)
-             arrayoftitle[k]=tt[k].title
-               console.log(tt[k].title)
-                console.log(JSON.stringify(tt[k].status))
-                const status=JSON.stringify(tt[k].status)
-                if(status)
-                {
-                    taskdone=taskdone+1
+             var arrayy=[];
+            docss.forEach((i)=>{
+              var m=i.members;
+              m.forEach((j)=>{
+                console.log(i.title,"=>",JSON.stringify(j));
+                var t=j.id;
+                console.log(t,"====",j.id);
+                if(t==p)
+                { 
+                var l=j.subtasks
+                var totaltask=l.length
+                var taskdone
+                var arrayy=[]
+                var o
+              l.forEach((o)=>
+                   {     
+                         var stat=o.status
+                        // var subname=o.title
+                         arrayy.push({"status":o.status,"subname":o.title})
+                         if(stat)
+                         {taskdone=taskdone+1}
+                   })
+                   console.log(arrayy)
+                    percentage=(taskdone/totaltask)*100
+                    console.log(p)
+                  console.log("after match",i.title)
+                arr.push({"Title":i.title,"Deadline":i.deadline,"Description":i.description,"arrayy":arrayy})
                 }
-              }
-              nooftasks=tt.length
-              console.log(taskdone)
-             console.log(nooftasks)
-             var percentage=(taskdone/nooftasks)*100
-             console.log(percentage)
-             var title=T.title
-             var deadline=JSON.stringify(T.deadline)
-              var description=T.description
-             var nme=docs[i].members[j].name
-
-
-             var Percentage=[]
-             var Title=[]
-             var Deadline=[]
-             var Description=[]
-             var Nme=[]
-             Percentage[i]=percentage
-             Title[i]=title
-             Deadline[i]=deadline
-             Description[i]=description
-             Nme[i]=nme
-
-
-console.log("my array",arr)
-           }}
-           res.render('server',{data:arr})
-   //  res.render('server',{Nme:Nme,Title:Title,Deadline:Deadline,Description:Description,Percentage:Percentage})
-           
-          }
+              })
+            })
+            console.log(arr);
+            res.render("server",{data:arr})
+                })
+            }
+          })
         })
-    })
- })
+      })
 
-app.listen(port, (req,res) => {
+app.listen(port, () => {
 console.log(`Server running `)}
 )
