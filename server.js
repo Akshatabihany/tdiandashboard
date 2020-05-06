@@ -36,10 +36,20 @@ app.get('/display',(req,res)=>{
               var m=i.members;
               m.forEach((j)=>{
                 console.log(i.title,"=>",JSON.stringify(j));
+                  //resources
+                  
+                         var arrr=[]
+                         
+                         arrr.push(i.resources[0])
+                         arrr.push(i.resources[1])
+                          console.log(arrr)
+                 ////
+
                 var t=j.id;
                 console.log(t,"====",j.id);
                 if(t==p)
                 { 
+               
                 var l=j.subtasks
                 var totaltask=l.length
                 var taskdone
@@ -57,7 +67,7 @@ app.get('/display',(req,res)=>{
                     percentage=(taskdone/totaltask)*100
                     console.log(p)
                   console.log("after match",i.title)
-                arr.push({"Title":i.title,"Deadline":i.deadline,"Description":i.description,"arrayy":arrayy})
+                arr.push({"Title":i.title,"Deadline":i.deadline,"Description":i.description,"arrayy":arrayy,"arrr":arrr})
                 }
               })
             })

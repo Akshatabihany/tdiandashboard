@@ -21,6 +21,14 @@
          <p><%= data[i].Title %><%= data[i].Deadline %><%= data[i].Description %><%= data[i].subtaskname %><%= data[i].subtaskstatus %></p>
 
          <ul>
+          <% for(var k=0; k<data[i].arrr.length; k++) {%>
+            <li>
+         <p><%= data[i].arrr[k] %></p>
+         </li>
+        <%}%>
+
+      </ul>
+         <ul>
             <% for(var j=0; j<data[i].arrayy.length; j++) {%>
               <li>
            <p><%=data[i].arrayy[j].status%><%=data[i].arrayy[j].subname%></p>
