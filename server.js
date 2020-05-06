@@ -62,7 +62,7 @@ app.get('/display',(req,res)=>{
               })
             })
             console.log(arr);
-            res.render("server",{data:arr})
+            res.render("server",{data:arr,percentage:percentage})
                 })
             }
           })
