@@ -18,7 +18,8 @@
     <ul>       <% for(var i=0; i<data.length; i++) {%>
 
       <li>
-         <p><%= data[i].Title %><%= data[i].Deadline %><%= data[i].Description %><%= data[i].subtaskname %><%= data[i].subtaskstatus %></p>
+         <p><%= data[i].Title %><%= data[i].Deadline %><%= data[i].Description %>
+          <%= data[i].subtaskname %><%= data[i].subtaskstatus %></p>
 
          <ul>
           <% for(var k=0; k<data[i].arrr.length; k++) {%>
@@ -26,6 +27,7 @@
          <p><%= data[i].arrr[k] %></p>
          </li>
         <%}%>
+        
 
       </ul>
          <ul>
