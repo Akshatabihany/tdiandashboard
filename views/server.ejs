@@ -18,8 +18,7 @@
     <ul>       <% for(var i=0; i<data.length; i++) {%>
 
       <li>
-         <p><%= data[i].Title %><%= data[i].Deadline %><%= data[i].Description %>
-          <%= data[i].subtaskname %><%= data[i].subtaskstatus %></p>
+         <p><%= data[i].Title %><%= data[i].Deadline %><%= data[i].Description %><%= data[i].subtaskname %><%= data[i].subtaskstatus %></p>
 
          <ul>
           <% for(var k=0; k<data[i].arrr.length; k++) {%>
@@ -33,7 +32,11 @@
          <ul>
             <% for(var j=0; j<data[i].arrayy.length; j++) {%>
               <li>
-           <p><%=data[i].arrayy[j].status%><%=data[i].arrayy[j].subname%></p>
+                <p>
+               
+            <label><input type="checkbox" onclick="myfunc()" ><%=data[i].arrayy[j].subname%></label>
+            <label id="status" ><%=data[i].arrayy[j].status%></label>
+            </p>
            </li>
           <%}%>
         </ul>
@@ -45,7 +48,12 @@
     <div class="w3-border">
       <div class="w3-grey" style="height:24px;width:<%=percentage%>px"></div>
     </div>
-
+<script>
+  
+function myfunc(){
+  document.getElementsById('status').innerHTML="1"
+}
+</script>
 </body>
 </html>
 
