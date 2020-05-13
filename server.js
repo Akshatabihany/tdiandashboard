@@ -67,18 +67,20 @@ app.get('/display',(req,res)=>{
                     percentage=(taskdone/totaltask)*100
                     console.log(p)
                   console.log("after match",i.title)
-                arr.push({"Title":i.title,"Deadline":i.deadline,"Description":i.description,"arrayy":arrayy,"arrr":arrr})
+                arr.push({"Title":i.title,"Deadline":i.deadline,"Description":i.description,"Domain":i.Domain,"arrayy":arrayy,"arrr":arrr})
                 }
               })
             })
             console.log(arr);
-            res.render("server",{data:arr,percentage:percentage})
+            res.render("server",{data:arr,"percentage":percentage})
                 })
             }
           })
         })
       })
 
+     
+      
 app.listen(port, () => {
-console.log(`Server running `)}
-)
+console.log(`Server running `)})
+     

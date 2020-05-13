@@ -11,16 +11,22 @@
         <input type="text" name="name" placeholder="Name">
         <input type="submit">
       
-<div class="w3-border">
-    <div class="w3-grey" style="height:24px;width:55px"></div>
-  </div>
+
     </form>   
+    Hello name
+
+
     <ul>       <% for(var i=0; i<data.length; i++) {%>
 
       <li>
-         <p><%= data[i].Title %><%= data[i].Deadline %><%= data[i].Description %><%= data[i].subtaskname %><%= data[i].subtaskstatus %></p>
-
+        <p>Domain:<%= data[i].Domain %></p>
+         <p>Title:<%= data[i].Title %></p>
+         <p> Deadline:<%= data[i].Deadline %></p>
+         <p> Description:<%= data[i].Description %></p>
+         
+       
          <ul>
+           Resources:
           <% for(var k=0; k<data[i].arrr.length; k++) {%>
             <li>
          <p><%= data[i].arrr[k] %></p>
@@ -30,12 +36,15 @@
 
       </ul>
          <ul>
+          <p> Your Tasks:</p>
             <% for(var j=0; j<data[i].arrayy.length; j++) {%>
               <li>
                 <p>
-               
-            <label><input type="checkbox" onclick="myfunc()" ><%=data[i].arrayy[j].subname%></label>
-            <label id="status" ><%=data[i].arrayy[j].status%></label>
+                  <form action="/update" method="POST">
+  <input type="checkbox" name="checkbox" class="checkbox" value ="0" class="checkbox" onclick="select(this)"><%=data[i].arrayy[j].status%>
+           <%=data[i].arrayy[j].subname%></p>
+           </form>
+        
             </p>
            </li>
           <%}%>
@@ -44,15 +53,13 @@
   </li>
  <%}%>
     </ul>
-     
+    <button></button>
     <div class="w3-border">
-      <div class="w3-grey" style="height:24px;width:<%=percentage%>px"></div>
+      <div class="w3-grey" style="height:24px;width:<%=percentage%>"></div>
     </div>
+    
 <script>
-  
-function myfunc(){
-  document.getElementsById('status').innerHTML="1"
-}
+
 </script>
 </body>
 </html>
