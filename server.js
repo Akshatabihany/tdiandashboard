@@ -19,6 +19,7 @@ app.get('/display',(req,res)=>{
          let query = {
              name : req.body.name
          }
+         var name=name;
          var p;
          console.log(req.body.name);
          dbll.collection('users').findOne(query ,(dbErr,result) => {
@@ -72,7 +73,7 @@ app.get('/display',(req,res)=>{
               })
             })
             console.log(arr);
-            res.render("server",{data:arr,"percentage":percentage})
+            res.render("server",{data:arr,"percentage":percentage,"name":name})
                 })
             }
           })
