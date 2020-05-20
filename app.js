@@ -73,7 +73,7 @@ app.get('/display',(req,res)=>{
               })
             })
             console.log(arr);
-            res.render("server",{data:arr,"name":name})
+            res.render("app",{data:arr,"name":name})
                 })
             }
           })

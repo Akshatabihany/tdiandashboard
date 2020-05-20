@@ -74,10 +74,13 @@ app.post('/displaypost', (req, res) => {
   
 
           })
+          
+        res.render("server", { data: arr})
         })
     
-        res.render("server", { data: arr})
+       // res.render("server", { data: arr})
       }})
+    //  res.render("server", { data: arr})
   })
 })
 
