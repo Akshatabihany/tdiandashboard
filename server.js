@@ -33,36 +33,29 @@ app.post('/displaypost', (req, res) => {
           var arrayy = [];
           docss.forEach((i) => {
             var m = i.members;
+           
             m.forEach((j) => {
               console.log(i.title, "=>", JSON.stringify(j));
               //resources
-
               var arrr = []
-
               arrr.push(i.resources[0])
               arrr.push(i.resources[1])
               console.log(arrr)
               ////
-
               var t = j.id;
               console.log(t, "====", j.id);
               if (t == p) {
-
                 var l = j.subtasks
                 var totaltask = l.length
                 var taskdone
                 var arrayy = []
                 var o
                 l.forEach((o) => {
-                  var stat = o.status
-                  // var subname=o.title
                   arrayy.push({ "status": o.status, "subname": o.title })
                   if (stat) { taskdone = taskdone + 1 }
                 })
                 console.log(arrayy)
                 percentage = (taskdone / totaltask) * 100
-                console.log(p)
-                console.log("after match", i.title)
               }
               //bugs
               if (t == p) {
@@ -75,13 +68,16 @@ app.post('/displaypost', (req, res) => {
                 console.log(arrayyy)
               }
               //bugs  
-              arr.push({ "Title": i.title, "Deadline": i.deadline, "Description": i.description, "Domain": i.Domain, "arrayy": arrayy, "arrr": arrr })
+           
+              arr.push({ "Title": i.title, "Deadline": i.deadline, "Description": i.description, "Domain": i.Domain, "arrayy": arrayy, "arrr": arrr,"arrayyy":arrayyy })
             })
+  
+
           })
         })
-        console.log(arr);
-        res.render("server", { data: arr, "percentage": percentage, "name": name })
-      })
+    
+        res.render("server", { data: arr})
+      }})
   })
 })
 

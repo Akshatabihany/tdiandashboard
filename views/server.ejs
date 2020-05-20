@@ -1,30 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <title>Document</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"
-    integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk="
-    crossorigin="anonymous"
-  />
-    
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <title>Document</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"
+    integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+
   <!-- bootstrap -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
- <style>
-/* .card{
+  <style>
+    /* .card{
   padding: 3%;
 } */
 
-/* .collapsible {
+    /* .collapsible {
   background-color: #777;
   color: white;
   cursor: pointer;
@@ -46,101 +44,101 @@
   overflow: hidden;
   background-color: #f1f1f1;
 } */
-
- </style> 
+  </style>
 
 </head>
+
 <body>
-    <form action="/displaypost" method="POST">
-        <input type="text" name="name" placeholder="Name">
-        <input type="submit">
-      
+  <form action="/displaypost" method="POST">
+    <input type="text" name="name" placeholder="Name">
+    <input type="submit">
 
-<nav class="navbar navbar-inverse navbar-fixed-top">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="#">Hello <%=name%>  <i class="fas fa-user"></i></a>
 
-    </div>
-    <ul class="nav navbar-nav">
-      <li ><a href="#">Chat</a></li>
-      <li><a href="#">Change password</a></li>
-      <li><a href="#">Logout</a></li>
-   
-    </ul>
-  </div>
-</nav>
-    <ul>       <% for(var i=0; i<data.length; i++) {%>
-    
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">Hello <%=name%> <i class="fas fa-user"></i></a>
+
+        </div>
+        <ul class="nav navbar-nav">
+          <li><a href="#">Chat</a></li>
+          <li><a href="#">Change password</a></li>
+          <li><a href="#">Logout</a></li>
+
+        </ul>
+      </div>
+    </nav>
+    <ul> <% for(var i=0; i<data.length; i++) {%>
+
       <li>
-       
+
         <div class="card">
           <div class="card-header">
             <!-- <button type="button" class="collapsible"> -->
-        <p>Domain:<%= data[i].Domain %></p>
-         <p>Title:<%= data[i].Title %></p>
-         <p> Deadline:<%= data[i].Deadline %></p>
-         <p> Description:<%= data[i].Description %></p>
-         <!-- </button> -->
-         </div>
+            <p>Domain:<%= data[i].Domain %></p>
+            <p>Title:<%= data[i].Title %></p>
+            <p> Deadline:<%= data[i].Deadline %></p>
+            <p> Description:<%= data[i].Description %></p>
+            <!-- </button> -->
+          </div>
         </div>
         </button>
         <!-- <div class="content"> -->
-         <div class="card-body">
-         <ul>
-           Resources:
-          <% for(var k=0; k<data[i].arrr.length; k++) {%>
-           
+        <div class="card-body">
+          <ul>
+            Resources:
+            <% for(var k=0; k<data[i].arrr.length; k++) {%>
+
             <li>
-         <p><%= data[i].arrr[k] %></p>
-         </li>
-        <%}%>
+              <p><%= data[i].arrr[k] %></p>
+            </li>
+            <%}%>
       </ul>
          <ul>
           <p> Your Tasks:</p>
             <% for(var j=0; j<data[i].arrayy.length; j++) {%>
-              <li>
-                
-                <form class="formm">
-                  <p>
-  <input type="checkbox" name="checkbox" class="checkbox" value ="1"><%=data[i].arrayy[j].status%>
-           <%=data[i].arrayy[j].subname%></p>
-        <button type="submit">update</button>
-      </form>
-            </p>
-           </li>
-          <%}%>
+            <li>
+
+              <form class="formm">
+                <p>
+                  <input type="checkbox" name="checkbox" class="checkbox" value="1"><%=data[i].arrayy[j].status%>
+                  <%=data[i].arrayy[j].subname%></p>
+                <button type="submit">update</button>
+              </form>
+              </p>
+            </li>
+            <%}%>
         </ul>
 <!-- bugs         -->
 <ul>
           <p> Your Tasks:</p>
             <% for(var j=0; j<data[i].arrayyy.length; j++) {%>
-              <li>
-                
-                <form class="formm">
-                  <p>
-  <input type="checkbox" name="checkbox" class="checkbox" value ="1"><%=data[i].arrayyy[j].Status%>
-           <%=data[i].arrayyy[j].title%>
-          <%=data[i].arrayyy[j].Startdate%>
-           <%=data[i].arrayyy[j].Deadline%>
-          </p>
-        <button type="submit">update</button>
-      </form>
-            </p>
-           </li>
-          <%}%>
+            <li>
+
+              <form class="formm">
+                <p>
+                  <input type="checkbox" name="checkbox" class="checkbox" value="1"><%=data[i].arrayyy[j].Status%>
+                  <%=data[i].arrayyy[j].title%>
+                  <%=data[i].arrayyy[j].Startdate%>
+                  <%=data[i].arrayyy[j].Deadline%>
+                </p>
+                <button type="submit">update</button>
+              </form>
+              </p>
+            </li>
+            <%}%>
         </ul>
 <!-- bugs -->
   </li>
  <%}%>
-    </ul>
+          </ul>
   </form>
   </div>
-</div>
-    <div class="w3-border">
-      <div class="w3-grey" style="height:24px;width:<%=percentage%>px"></div>
-    </div>
-<!-- <script>
+  </div>
+  <div class="w3-border">
+    <div class="w3-grey" style="height:24px;width:<%=percentage%>px"></div>
+  </div>
+  <!-- <script>
 
 var c=document.querySelectorAll('.formm')
 c.forEach(i=>
@@ -154,65 +152,56 @@ async function markk(e)
   console.log(check)
 } -->
 
-//   var coll = document.getElementsByClassName("collapsible");
-// var i;
+  // var coll = document.getElementsByClassName("collapsible");
+  // var i;
 
-// for (i = 0; i < coll.length; i++) {
-//   coll[i].addEventListener("click", function() {
-//     this.classList.toggle("active");
-//     var content = this.nextElementSibling;
-//     if (content.style.display === "block") {
-//       content.style.display = "none";
-//     } else {
-//       content.style.display = "block";
-//     }
-//   });
-// // }
-// //    let c=document.querySelectorAll('.form')
-// //    cs.forEach(c=>
-// //    {
-// //      c.addEventListener('submit',mark)
-// //    })
-// //    async function mark(e){
-// //      e.preventDefault()
-// //      let i=e.target.tagname
-// //      //let value = e.target.childNodes
-// //      console.log(i)
-// //      //console.log(value)
-// // //     let status
-// // //     if(value.checked)
-// // //     status=1
-// // //     let info={
-// // //       subname,
-// // //       status
-// //      }
-// // // let response =await fetch('/formm',{
-// // //   method:'POST',
-// // //   headers: {
-// // //       'Content-Type': 'application/json'
-    
-// // //     },
-// // //   body:JSON.stringify(info)
-// // // })
-// // // let data=await response.json()
-// // // if(response.status===200)
-// // // {
-// //   console.log(data.msg)
-// // }
-// //   }
-// $('.checked_all').on('change', function() {     
-//                 $('.checkbox').prop('checked', $(this).prop("checked"));              
-//         });
-//         //deselect "checked all", if one of the listed checkbox product is unchecked amd select "checked all" if all of the listed checkbox product is checked
-//         $('.checkbox').change(function(){ //".checkbox" change 
-//             if($('.checkbox:checked').length == $('.checkbox').length){
-//                    $('.checked_all').prop('checked',true);
-//             }else{
-//                    $('.checked_all').prop('checked',false);
-//             }
-//         });
-// </script>
- </body>
- </html>
+  // for (i = 0; i < coll.length; i++) { // coll[i].addEventListener("click", function() { //
+    this.classList.toggle("active"); // var content=this.nextElementSibling; // if (content.style.display==="block" ) {
+    // content.style.display="none" ; // } else { // content.style.display="block" ; // } // }); // // } // // let
+    c=document.querySelectorAll('.form') // // cs.forEach(c=>
+    // // {
+    // // c.addEventListener('submit',mark)
+    // // })
+    // // async function mark(e){
+    // // e.preventDefault()
+    // // let i=e.target.tagname
+    // // //let value = e.target.childNodes
+    // // console.log(i)
+    // // //console.log(value)
+    // // // let status
+    // // // if(value.checked)
+    // // // status=1
+    // // // let info={
+    // // // subname,
+    // // // status
+    // // }
+    // // // let response =await fetch('/formm',{
+    // // // method:'POST',
+    // // // headers: {
+    // // // 'Content-Type': 'application/json'
 
+    // // // },
+    // // // body:JSON.stringify(info)
+    // // // })
+    // // // let data=await response.json()
+    // // // if(response.status===200)
+    // // // {
+    // // console.log(data.msg)
+    // // }
+    // // }
+    // $('.checked_all').on('change', function() {
+    // $('.checkbox').prop('checked', $(this).prop("checked"));
+    // });
+    // //deselect "checked all", if one of the listed checkbox product is unchecked amd select "checked all" if all of
+    the listed checkbox product is checked
+    // $('.checkbox').change(function(){ //".checkbox" change
+    // if($('.checkbox:checked').length == $('.checkbox').length){
+    // $('.checked_all').prop('checked',true);
+    // }else{
+    // $('.checked_all').prop('checked',false);
+    // }
+    // });
+    // </script>
+</body>
 
+</html>
