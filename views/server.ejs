@@ -111,6 +111,26 @@
            </li>
           <%}%>
         </ul>
+<!-- bugs         -->
+<ul>
+          <p> Your Tasks:</p>
+            <% for(var j=0; j<data[i].arrayyy.length; j++) {%>
+              <li>
+                
+                <form class="formm">
+                  <p>
+  <input type="checkbox" name="checkbox" class="checkbox" value ="1"><%=data[i].arrayyy[j].Status%>
+           <%=data[i].arrayyy[j].title%>
+          <%=data[i].arrayyy[j].Startdate%>
+           <%=data[i].arrayyy[j].Deadline%>
+          </p>
+        <button type="submit">update</button>
+      </form>
+            </p>
+           </li>
+          <%}%>
+        </ul>
+<!-- bugs -->
   </li>
  <%}%>
     </ul>
